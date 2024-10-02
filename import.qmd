@@ -1,7 +1,7 @@
 ---
 title: "Import practical"
-author: Your name here
-date: today
+author: Sowmya Janmahanthi
+date: 30/09/2024
 format: html
 ---
 
@@ -28,8 +28,8 @@ We will take advantage of the RStudio projects and store data files in a sub-fol
 5. Add a code chunk to load the libraries. You only need `readr`.
 
 ```{r}
-# Your answer in code
-
+renv::restore()
+library(readr)
 ```
 
 
@@ -77,8 +77,7 @@ For example, you folder structure could be (depending on the picked names) as he
 
 
 ```{r}
-# Your answer in code
-
+readr::read_delim("data/blood_fat.csv")
 ```
 
 
@@ -91,8 +90,7 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 ##### Load again the same file, silencing the `read_delim()` message
 
 ```{r}
-# Your answer in code
-
+readr::read_delim("data/blood_fat.csv", show_col_types=FALSE)
 
 ```
 
@@ -107,14 +105,15 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 
 
 > Your answer as text
-
-
+A tibble:25 × 5
+Rows: 25 Columns: 5
 
 - The columns of a tibble report their type:
 
 
-
 > Your answer as text
+chr (1): group     (Character)
+dbl (4): id, weight, age, fat   (Double)
 
 
 
@@ -130,9 +129,7 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 
 
 ```{r}
-# Your answer in code
-
-
+readr::read_delim("data/blood_fat.csv", col_types=cols(age=col_integer(), id ="i"), show_col_types=FALSE)
 
 ```
 
@@ -140,10 +137,7 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 ### Read the `blood_fat.csv` specifying the data types of `age` and `id` as integers, skipping `weight`.
 
 ```{r}
-# Your answer in code
-
-
-
+readr::read_delim("data/blood_fat.csv", col_types=cols(age="i", id= "i", weight="_"),show_col_types=FALSE)
 
 ```
 
